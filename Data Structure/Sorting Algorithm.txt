@@ -1,0 +1,209 @@
+Sorting Algorithm :
+
+1) Bubble Sort -
+	- It is the Simplest Sorting algo.
+	- Bubble sort is based on the idea of repeatedly comparing pairs of adjacent elements and then swapping their positions.
+	
+	Pseudo Code:
+			void bubble_sort( int A[ ], int n ) {
+				int temp;
+				for(int k = 0; k< n-1; k++) {
+					//**** (n-k-1) is for ignoring comparisons of elements which have already been compared in earlier iterations ****//
+					for(int i = 0; i < n-k-1; i++) {
+						if(A[ i ] > A[ i+1] ) {
+							// here swapping of positions is being done.
+							temp = A[ i ];
+							A[ i ] = A[ i+1 ];
+							A[ i + 1] = temp;
+						}
+					}
+				}
+			}
+			
+		- Complexity of this algo will always be o(n*n) even if array is already sorted.
+		- We can enter some condition to avoid comparisons if array is already sorted.
+		
+		example :
+			 static void bubbleSort(int arr[], int n)
+			{
+				int i, j, temp;
+				boolean swapped;
+				for (i = 0; i < n - 1; i++) 
+				{
+					swapped = false;							// This variable is to check if swaping is happeing or not
+					for (j = 0; j < n - i - 1; j++) 
+					{
+						if (arr[j] > arr[j + 1]) 
+						{
+							// swap arr[j] and arr[j+1]
+							temp = arr[j];
+							arr[j] = arr[j + 1];
+							arr[j + 1] = temp;
+							swapped = true;
+						}
+					}
+		 
+					// IF no two elements were 
+					// swapped by inner loop, then break
+					if (swapped == false)						// This condition will prevent us from comparisons if array is already sorted
+						break;
+				}
+			}
+		
+		- This tweak can reduce Complexity by o(n) if array is already sorted.
+		- **** Complexity o(n*n) [if array not sorted already] and o(n) [array is already sorted] ****.
+		
+=================================================================================================================================================
+
+2) Selection Sort:
+	- Repeatedly finding the minimum/maximum element from unsorted part and putting it at the beginning.
+	- The algorithm maintains two subarrays in a given array.
+		1) The subarray which is already sorted.
+		2) Remaining subarray which is unsorted.
+	- Time Complexity: O(n*n) as there are two nested loops.	
+	- The good thing about selection sort is it never makes more than O(n) swaps and can be useful when memory write is a costly operation.
+	
+	Pseudo code:
+		void selection_sort (int A[ ], int n) {
+			// temporary variable to store the position of minimum element
+			int minimum;        
+			// reduces the effective size of the array by one in  each iteration.
+			for(int i = 0; i < n-1 ; i++)  {
+			   // assuming the first element to be the minimum of the unsorted array .
+				 minimum = i ;
+			  // gives the effective size of the unsorted  array .
+				for(int j = i+1; j < n ; j++ ) {
+					if(A[ j ] < A[ minimum ])  {                //finds the minimum element
+					minimum = j ;
+					}
+				 }
+			  // putting minimum element on its proper position.
+			  swap ( A[ minimum ], A[ i ]) ; 
+			}
+	   }
+	
+=================================================================================================================================================
+
+3) Insertion Sort:
+	- Idea of this algorithm is that for each iteration element at that number (number of iteration) will be compared with other elements
+	and swapped accordingly.
+	- This sorting algo is different from Bubble sort as in Bubble sort only adjacent elements are compared.
+	- This is again a simple algorithm.
+	- Time complexity of this algorithm is also o(n*n).
+	
+	**** Insertion sort takes maximum time to sort if elements are sorted in reverse order. And it takes minimum time (Order of n) when elements are already sorted. ****
+	
+	Pseudo Code:
+		void insertion_sort ( int A[ ] , int n) 
+		{
+			 for( int i = 0 ;i < n ; i++ ) {
+			/*storing current element whose left side is checked for its 
+					 correct position .*/
+			  int temp = A[ i ];    
+			  int j = i;
+			   /* check whether the adjacent element in left side is greater or
+					less than the current element. */
+				  while( j > 0 &&temp < A[ j -1] ) {
+				   // moving the left side element to one position forward.
+						A[ j ] = A[ j-1];   
+						j= j - 1;
+				   }
+				 // moving current element to its  correct position.
+				   A[ j ] = temp;       
+			 }  
+		}
+		
+=================================================================================================================================================
+
+4) Merge Sort :
+	- Merge sort is a divide-and-conquer algorithm.
+	- It is based on the idea of breaking down a list into several sub-lists until each sublist consists of a single element and merging those sublists in a manner that results into a sorted list.
+	- While comparing two sublists for merging, the first element of both lists is taken into consideration.
+	
+	*** Time complexity of Merge Sort is O(nLogn) in all 3 cases (worst, average and best)  ***
+	
+	Pseudo code:
+	
+		void merge(int A[ ] , int start, int mid, int end) {
+		 //stores the starting position of both parts in temporary variables.
+		int p = start ,q = mid+1;
+
+		int Arr[end-start+1] , k=0;
+
+		for(int i = start ;i <= end ;i++) {
+			if(p > mid)      //checks if first part comes to an end or not .
+			   Arr[ k++ ] = A[ q++] ;
+
+		   else if ( q > end)   //checks if second part comes to an end or not
+			   Arr[ k++ ] = A[ p++ ];
+
+		   else if( A[ p ] < A[ q ])     //checks which part has smaller element.
+			  Arr[ k++ ] = A[ p++ ];
+
+		   else
+			  Arr[ k++ ] = A[ q++];
+		 }
+		  for (int p=0 ; p< k ;p ++) {
+		   /* Now the real array has elements in sorted manner including both 
+				parts.*/
+			 A[ start++ ] = Arr[ p ] ;                          
+		  }
+		}
+		
+		
+		 void merge_sort (int A[ ] , int start , int end )
+		 {
+				   if( start < end ) {
+				   int mid = (start + end ) / 2 ;           // defines the current array in 2 parts .
+				   merge_sort (A, start , mid ) ;                 // sort the 1st part of array .
+				   merge_sort (A,mid+1 , end ) ;              // sort the 2nd part of array.
+
+				 // merge the both parts by comparing elements of both the parts.
+				  merge(A,start , mid , end );   
+		   }                    
+		}
+	
+=================================================================================================================================================
+
+5) Quick Sort :
+	- QuickSort is a Divide and Conquer algorithm.
+	- It picks an element as pivot and partitions the given array around the picked pivot.
+	- There can be different strategy to pick pivot element 
+		- Always pick first element as pivot.
+		- Always pick last element as pivot (implemented below)
+		- Pick a random element as pivot.
+		- Pick median as pivot.
+	- Left side of pivot contains all the elements that are less than the pivot element Right side contains all elements greater than the pivot.
+	
+		****  The worst case occurs when the partition process always picks greatest or smallest element as pivot. 
+	and at the time coomplexity will be O(n*n) ****
+	
+	- But by using random method to pick pivot element, time complexity fluctuate between O(n*n) to O(nLogn).
+	
+	Pseudo Code :
+		int partition ( int A[],int start ,int end) {
+		int i = start + 1;
+		int piv = A[start] ;            //make the first element as pivot element.
+		for(int j =start + 1; j <= end ; j++ )  {
+		/*rearrange the array by putting elements which are less than pivot
+		   on one side and which are greater that on other. */
+
+			  if ( A[ j ] < piv) {
+					 swap (A[ i ],A [ j ]);
+				i += 1;
+			}
+	   }
+	   swap ( A[ start ] ,A[ i-1 ] ) ;  //put the pivot element in its proper place.
+	   return i-1;                      //return the position of the pivot
+	}
+
+	void quick_sort ( int A[ ] ,int start , int end ) {
+	   if( start < end ) {
+			//stores the position of pivot element
+			 int piv_pos = partition (A,start , end ) ;     
+			 quick_sort (A,start , piv_pos -1);    //sorts the left side of pivot.
+			 quick_sort ( A,piv_pos +1 , end) ; //sorts the right side of pivot.
+	   }
+	}
+	
+=================================================================================================================================================	

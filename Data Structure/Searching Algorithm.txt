@@ -1,0 +1,54 @@
+Searching Algorithm:
+
+1) Linear Search :
+	- It relies on the technique of traversing a list from start to end.
+	** The time complexity of the linear search is  O(n) because each element in an array is compared only once **
+	
+	Psuedo Code:
+		for(start to end of array)
+		{
+			if (current_element equals to 5)  
+			{
+				print (current_index);
+			}
+		}
+		
+=======================================================================================================================================		
+
+2) Binary Search :
+	- Binary search works only on a sorted set of elements.
+	** To use binary search on a collection, the collection must first be sorted **
+	- Search a sorted array by repeatedly dividing the search interval in half.
+	- First we have to find the Middle, by (low+high)/2 and then compare the value with Middle
+	- If value to be search is less than middle then we follow same procedure on left side and if it is greater then on right side.
+	- This will continue until Middle value comes equals to the value we are searching for.
+	
+	*** In wrost case also Time Complexity is O(logN) ***
+	
+	Psuedo Code:
+		int binarySearch(int low,int high,int key)
+		{
+		   while(low<=high)
+		   {
+			 int mid=(low+high)/2;
+			 if(a[mid]<key)
+			 {
+				 low=mid+1;
+			 }
+			 else if(a[mid]>key)
+			 {
+				 high=mid-1;
+			 }
+			 else
+			 {
+				 return mid;
+			 }
+		   }
+		   return -1;                //key not found
+		 }
+		 
+		 
+		 
+	*** Problem arises with Binary Search when there are Duplicates present in sorted array, then we have to manipulate code ***	 
+		 
+=======================================================================================================================================				 

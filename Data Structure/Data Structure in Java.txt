@@ -1,0 +1,59 @@
+Data Structure :
+
+Stack Data Structure :
+		- Stack is a linear data structure.
+		- Stacks are dynamic data structures that follow the Last In First Out (LIFO) principle.
+		- Elements can be inserted or deleted only from one end of the stack i.e. from the top.
+		- The operations of inserting and deleting elements are called PUSH and POP	respectively.
+		- When the top element of a stack is deleted, if the stack remains non-empty, then the element just below the previous top element becomes the new top element of the stack.
+		- *** Do not have a fixed size ***
+		- *** Do not consume a fixed amount of memory ***
+		- Each  and  operation increases and decreases the size of the stack by , respectively.
+	
+	Application :
+		- Generally used in balanced Paranthesis Problem.
+		
+
+=========================================================================================================================================
+		
+Queue Data Structure :
+		- Queues are data structures that follow the First In First Out (FIFO).
+		- Elements are always added to the back and removed from the front.
+		
+		** The difference between stacks and queues is in removing.In a stack we remove the item the most recently added; in a queue, we remove the item the least recently added **
+		
+		Variables used
+			: queue[] - Array in which queue is simulated
+			: arraySize - Maximum number of elements that can be stored in a 
+			: front - oints at the index where the next deletion will be performed
+			: rear - Points at the index where the next insertion will be performed
+			
+		- If front == read that means queue is empty i.e Underflow and if rear == arraySize that means queue is full i.e OverFlow.	
+		
+		
+***** Problem with Standard Queue is that AFTER DELETION VACANT SPACE IS NOT UTILIZE, thus result in waste of memory *****		
+		
+		
+		Type of Queue : 
+			- Double-ended queue
+			- Circular queue
+			
+			
+			Double-ended Queue Data Structure :
+				- In a double-ended queue, characters can be inserted and deleted from both the front and back of the queue.
+				** Same Condition If front == read that means queue is empty i.e Underflow and if rear == arraySize that means queue is full i.e OverFlow.	**
+			
+			Circular Queue Data Structure :
+				***  In a standard queue, when an element is deleted, the vacant space is not reutilized. However, in a circular queue, vacant spaces are reutilized. ***
+				- While inserting elements, when you reach the end of an array and you need to insert another element, you must insert that element at the beginning (given that the first element has been deleted and the space is vacant).
+				- We can again start inserting element from start given they were deleted and space is vacant.
+				
+				
+				Variables used
+					: queue[] - Array in which queue is simulated
+					: arraySize - Maximum number of elements that can be stored in a 
+					: front - oints at the index where the next deletion will be performed
+					: rear - Points at the index where the next insertion will be performed
+					: count - Number of elements present in a queue
+					
+=========================================================================================================================================					
